@@ -1,0 +1,42 @@
+{
+    "manifest_version": 2,
+    "name": "Context Bridge",
+    "version": "0.1.0",
+    "description": "Switch between AI assistants without losing your train of thought.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "tabs"
+    ],
+    "background": {
+        "scripts": [
+            "background/background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://chatgpt.com/*",
+                "*://claude.ai/*"
+            ],
+            "js": [
+                "content/platforms/chatgpt.js",
+                "content/extractor.js",
+                "content/observer.js",
+                "content/content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "browser_action": {
+        "default_popup": "sidebar/sidebar.html",
+        "default_icon": {
+            "48": "icons/icon48.png",
+            "96": "icons/icon96.png"
+        }
+    },
+    "icons": {
+        "48": "icons/demo.png",
+        "96": "icons/demo1.png"
+    }
+}
